@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import Menu from './components/Menu/menu'
+import MenuItem from './components/Menu/menuItem'  
 import Button from './components/Button/button'
 
 const App: React.FC = () => {
@@ -11,6 +13,17 @@ const App: React.FC = () => {
         <Button btnType='danger' size='sm'> Small Danger </Button>
         <Button btnType='link' href="http://www.baidu.com" target="_blank"> Baidu Link </Button>
         <Button btnType='link' href="http://www.baidu.com" disabled> Disabled Link </Button>
+        <Menu defaultIndex={0} onSelect={(index) => {alert(index)}} mode="horizontal">
+          <MenuItem index={0}>
+            cool link
+          </MenuItem>
+          <MenuItem index={1} disabled>
+            cool link 2
+          </MenuItem>        
+          <MenuItem index={2}>
+            cool link 3
+          </MenuItem>
+        </Menu>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
