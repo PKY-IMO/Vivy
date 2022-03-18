@@ -2,6 +2,7 @@ import React from 'react'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'  
 import Button from './components/Button/button'
+import SubMenu from './components/Menu/subMenu'
 
 const App: React.FC = () => {
   return (
@@ -13,16 +14,24 @@ const App: React.FC = () => {
         <Button btnType='danger' size='sm'> Small Danger </Button>
         <Button btnType='link' href="http://www.baidu.com" target="_blank"> Baidu Link </Button>
         <Button btnType='link' href="http://www.baidu.com" disabled> Disabled Link </Button>
-        <Menu defaultIndex={0} onSelect={(index) => {alert(index)}} mode="horizontal">
-          <MenuItem index={0}>
-            cool link
+        <Menu defaultIndex={'0'} onSelect={(index) => {alert(index)}} mode="vertical">
+          <MenuItem>
+            cool link 0
           </MenuItem>
-          <MenuItem index={1} disabled>
-            cool link 2
+          <MenuItem disabled>
+            cool link 1
           </MenuItem>        
-          <MenuItem index={2}>
-            cool link 3
+          <MenuItem>
+            cool link 2
           </MenuItem>
+          <SubMenu title='submenu'>
+            <MenuItem>
+              cool link 3-1
+            </MenuItem>
+            <MenuItem>
+              cool link 3-2
+            </MenuItem>
+          </SubMenu>
         </Menu>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
