@@ -3,10 +3,15 @@ import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'  
 import Button from './components/Button/button'
 import SubMenu from './components/Menu/subMenu'
+import Icon from './components/Icon/icon'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 const App: React.FC = () => {
   return (
     <div className="App">
+      <Icon icon="arrow-down" theme='danger' size='10x'></Icon>
       <header className="App-header">
         <Button className="custom"> Hello </Button>
         <Button disabled> Disabled Button </Button>
