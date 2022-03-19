@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'  
 import Button from './components/Button/button'
 import SubMenu from './components/Menu/subMenu'
 import Icon from './components/Icon/icon'
+import Transition from './components/Transition/transition'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
 
 const App: React.FC = () => {
+  const [show, setShow] = useState(true)
   return (
     <div className="App">
       <Icon icon="arrow-down" theme='danger' size='10x'></Icon>
@@ -19,7 +22,7 @@ const App: React.FC = () => {
         <Button btnType='danger' size='sm'> Small Danger </Button>
         <Button btnType='link' href="http://www.baidu.com" target="_blank"> Baidu Link </Button>
         <Button btnType='link' href="http://www.baidu.com" disabled> Disabled Link </Button>
-        <Menu defaultIndex={'0'} onSelect={(index) => {alert(index)}} mode="vertical">
+        <Menu defaultIndex={'0'} onSelect={(index) => {alert(index)}} mode="horizontal">
           <MenuItem>
             cool link 0
           </MenuItem>
@@ -38,9 +41,19 @@ const App: React.FC = () => {
             </MenuItem>
           </SubMenu>
         </Menu>
-        <p>
+        <Button onClick={()=>{setShow(!show)}}>toggle</Button>
+        <Transition 
+          in={show}
+          timeout={300}
+          animation="zoom-in-top"
+          wrapper
+        >
+           <p>
           Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+          </p>
+          <Button btnType='primary'>HI</Button>
+        </Transition>
+
         <a
           className="App-link"
           href="https://reactjs.org"
