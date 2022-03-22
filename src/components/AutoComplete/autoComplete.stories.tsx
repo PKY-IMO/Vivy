@@ -2,9 +2,9 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { AutoComplete, DataSourceType } from './autoComplete'
-interface LakerPlayerProps {
+interface fruitProps {
   value: string;
-  number: number;
+  price: number;
 }
 
 interface GithubUserProps {
@@ -14,8 +14,8 @@ interface GithubUserProps {
 }
 
 const SimpleComplete = () => {
-  const lakers = ['bradley', 'pope', 'caruso', 'cook', 'cousins',
-  'james', 'AD', 'green', 'howard', 'kuzma', 'McGee', 'rando']
+  const lakers = ['Apple', 'Banana', 'Blackberry', 'Apricot', 'raspberry',
+  'pear', 'watermelon', 'tomato', 'lemon', 'pineapple', 'haw', 'grape']
 
   const handleFetch = (query: string) => {
     return lakers.filter(name => name.includes(query)).map(name => ({value: name}))
@@ -25,7 +25,7 @@ const SimpleComplete = () => {
     <AutoComplete 
       fetchSuggestions={handleFetch}
       onSelect={action('selected')}
-      placeholder="输入湖人队球员英文名试试"
+      placeholder="输入水果英文试试"
     />
   )
 
@@ -33,26 +33,26 @@ const SimpleComplete = () => {
 
 const customComplete = () => {
   const lakersWithNumber = [
-    {value: 'bradley', number: 11},
-    {value: 'pope', number: 1},
-    {value: 'caruso', number: 4},
-    {value: 'cook', number: 2},
-    {value: 'cousins', number: 15},
-    {value: 'james', number: 23},
-    {value: 'AD', number: 3},
-    {value: 'green', number: 14},
-    {value: 'howard', number: 39},
-    {value: 'kuzma', number: 0},
+    {value: 'Apple', price: 11},
+    {value: 'Banana', price: 1},
+    {value: 'Blackberry', price: 4},
+    {value: 'Apricot', price: 2},
+    {value: 'raspberry', price: 15},
+    {value: 'pear', price: 23},
+    {value: 'watermelon', price: 3},
+    {value: 'tomato', price: 14},
+    {value: 'lemon', price: 39},
+    {value: 'haw', price: 0},
   ] 
   const handleFetch = (query: string) => {
     return lakersWithNumber.filter(player => player.value.includes(query))
   }
   const renderOption = (item: DataSourceType) => {
-    const itemWithNumber = item as DataSourceType<LakerPlayerProps>
+    const itemWithNumber = item as DataSourceType<fruitProps>
     return (
       <>
-        <b>名字: {itemWithNumber.value}</b>
-        <span>球衣号码: {itemWithNumber.number}</span>
+        <b>水果名称: {itemWithNumber.value}</b>
+        <span>价格: {itemWithNumber.price}</span>
       </>
     )
   }
@@ -60,7 +60,7 @@ const customComplete = () => {
     <AutoComplete 
       fetchSuggestions={handleFetch}
       onSelect={action('selected')}
-      placeholder="湖人队球员自定义下拉模版"
+      placeholder="输入水果英文试试"
       renderOption={renderOption}
     />
   )
@@ -96,6 +96,6 @@ const ajaxComplete = () => {
 
 
 storiesOf('AutoComplete Component', module)
-  .add('AutoComplete', SimpleComplete)
-  .add('自定义下拉选项', customComplete)
-  .add('异步请求Github用户名', ajaxComplete)
+  .add('默认 AutoComplete', SimpleComplete)
+  .add('自定义 AutoComplete', customComplete)
+  .add('异步请求 AutoComplete', ajaxComplete)

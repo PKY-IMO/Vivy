@@ -162,4 +162,5 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   )
 }
 
+AutoComplete.displayName = 'AutoComplete'
 export default AutoComplete;

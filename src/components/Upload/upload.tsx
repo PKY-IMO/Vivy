@@ -203,7 +203,7 @@ export const Upload: FC<UploadProps> = (props) => {
           </Button>
         }
         <input
-          className="vivy-upload-input"
+          className="vivy-file-input"
           style={{display: 'none'}}
           ref={fileInput}
           onChange={handleFileChange}
@@ -223,5 +223,5 @@ export const Upload: FC<UploadProps> = (props) => {
 Upload.defaultProps = {
   name: 'file'
 }
-
+Upload.displayName = 'Upload'
 export default Upload

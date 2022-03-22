@@ -34,4 +34,5 @@ export const Dragger: FC<DraggerProps> = (props) => {
   )
 }
 
+Dragger.displayName = 'Dragger'
 export default Dragger;

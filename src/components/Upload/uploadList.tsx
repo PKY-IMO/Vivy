@@ -43,4 +43,5 @@ export const UploadList: FC<UploadListProps> = (props) => {
 
 }
 
+UploadList.displayName = 'UploadList'
 export default UploadList;

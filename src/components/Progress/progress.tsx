@@ -41,4 +41,5 @@ Progress.defaultProps = {
   showText: true,
   theme: "primary",
 }
+Progress.displayName = 'Progress'
 export default Progress;

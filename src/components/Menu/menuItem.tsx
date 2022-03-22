@@ -3,9 +3,13 @@ import classNames from 'classnames'
 import { MenuContext } from './menu'
 
 export interface MenuItemProps {
+  /** 自定义类 */
   className?: string;
+  /** 索引 */
   index?: string;
+  /** 自定义样式 */
   style?: React.CSSProperties;
+  /** 是否禁用 */
   disabled?: boolean;
 }
 
@@ -32,5 +36,4 @@ const MenuItem: FC<MenuItemProps> = (props) => {
 }
 
 MenuItem.displayName = 'MenuItem'
-
 export default MenuItem

@@ -5,6 +5,7 @@ export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 
 interface BaseButtonProps {
+  /** 自定义类 */
   className?: string;
   /**设置 Button 的禁用 */
   disabled?: boolean;
@@ -66,4 +67,5 @@ Button.defaultProps = {
   btnType: 'default'
 }
 
+Button.displayName = 'Button'
 export default Button;

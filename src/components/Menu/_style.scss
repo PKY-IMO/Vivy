@@ -54,6 +54,7 @@
     list-style:none;
     padding-left: 0;
     white-space: nowrap;
+    width: 100%;
     // transition: $menu-transition;
     .menu-item {
       padding: $menu-item-padding-y $menu-item-padding-x;
@@ -64,9 +65,6 @@
         color: $menu-item-active-color !important;
       }
     }
-  }
-  .vivy-submenu.menu-opened {
-    // display: block;
   }
 }
 .menu-horizontal {

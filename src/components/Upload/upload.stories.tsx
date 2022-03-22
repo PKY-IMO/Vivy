@@ -24,7 +24,7 @@ const simpleUpload = () => (
 const simpleUploadWithList = () => {
   return (
     <Upload
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      action="https://jsonplaceholder.typicode.com/posts/"
       text="拖拽"
       onChange={action('changed')}
       defaultFileList={defaultFileList}
@@ -37,7 +37,7 @@ const simpleUploadWithList = () => {
 const dragUpload = () => {
   return (
     <Upload
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      action="https://jsonplaceholder.typicode.com/posts/"
       onChange={action('changed')}
       drag
     />

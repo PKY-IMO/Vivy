@@ -7,8 +7,11 @@ import Icon from '../Icon/icon'
 
 
 export interface SubMenuProps {
-  index?: string;
+  /** 子菜单名称 */
   title: string;
+  /** 索引 */
+  index?: string;
+  /** 自定义类 */
   className?: string;
 }
 

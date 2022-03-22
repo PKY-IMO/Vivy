@@ -7,11 +7,17 @@ export type InputSize = 'lg' | 'sm'
 
 // 接口值重复Omit忽略接口的值
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'>{
+  /** 是否禁用 */
   disabled?: boolean;
+  /** 大小 */
   size?: InputSize;
+  /** 图标 */
   icon?: IconProp;
+  /** 前缀 */
   prepend?: string | ReactElement;
+  /** 后缀 */
   append?: string | ReactElement;
+  /** 改变钩子函数 */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -28,6 +34,7 @@ export const Input: FC<InputProps> = (props) => {
   // 受控组件初始值时undefined时 赋其他值会报错
   const fixControlledValue = (value: any) => {
     if (typeof value === 'undefined' || value === null) {
+      console.log('111')
       return ''
     }
     return value
@@ -51,4 +58,5 @@ export const Input: FC<InputProps> = (props) => {
   )
 }
 
+Input.displayName = 'Input'
 export default Input

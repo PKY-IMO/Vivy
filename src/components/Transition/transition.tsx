@@ -29,4 +29,5 @@ Transition.defaultProps = {
   appear: true
 }
 
-export default Transition
+Transition.displayName = 'Transition'
+export default Transition;
