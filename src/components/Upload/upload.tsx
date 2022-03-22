@@ -2,12 +2,16 @@ import React, { FC, useState, useRef, ChangeEvent } from "react"
 import axios from "axios"
 import Button from "../Button/button"
 import UploadList from './uploadList'
+import Dragger from './dragger'
+import Icon from '../Icon/icon'
 
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
 
 export interface UploadProps {
   /** 上传地址 */
   action: string;
+  /** 用户提示文本 */
+  text?: string;
   /** 默认文件列表（用于测试） */
   defaultFileList?: UploadFile[];
   /** 自定义请求头 */
@@ -34,6 +38,8 @@ export interface UploadProps {
   onError?: (err: any, file: UploadFile) => void;
   /** 取消上传钩子函数 */
   onRemove?: (file: UploadFile) => void;
+  /** 支持拖拽 */
+  drag?: boolean;
 }
 
 export interface UploadFile {
@@ -49,7 +55,7 @@ export interface UploadFile {
 
 export const Upload: FC<UploadProps> = (props) => {
   // 基础属性
-  const { action, beforeUpload, onProgress, onChange, onError, onSuccess, defaultFileList, onRemove } = props
+  const { action, text, beforeUpload, onProgress, onChange, onError, onSuccess, defaultFileList, onRemove, drag } = props
   // http自定义属性,以及input属性
   const { headers, name, data, withCredentials, accept, multiple } = props
   // 上传文件列表
@@ -179,21 +185,33 @@ export const Upload: FC<UploadProps> = (props) => {
 
   return (
     <div className="vivy-upload-wrapper">
-      <Button
-        btnType="primary"
+      <div 
+        className="vivy-upload-input"
+        style={{display: 'inline-block'}}
         onClick={handleClick}
       >
-        Upload File
-      </Button>
-      <input
-        className="vivy-upload-input"
-        style={{display: 'none'}}
-        ref={fileInput}
-        onChange={handleFileChange}
-        type="file"
-        accept={accept}
-        multiple={multiple}
-      />
+        {drag ?
+          <Dragger onFile={(files) => {uploadFiles(files)}}>
+            <Icon icon="upload" size="5x" theme="secondary" />
+            <br/>
+            <p>{ text ? text : 'Drag file over to upload' }</p>
+          </Dragger> :
+          <Button
+            btnType="primary"
+          >
+            { text ? text : 'Upload File' }
+          </Button>
+        }
+        <input
+          className="vivy-upload-input"
+          style={{display: 'none'}}
+          ref={fileInput}
+          onChange={handleFileChange}
+          type="file"
+          accept={accept}
+          multiple={multiple}
+        />
+      </div>
       <UploadList 
         fileList={fileList}
         onRemove={handleRemove}

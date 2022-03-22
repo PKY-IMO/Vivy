@@ -2,8 +2,6 @@ import React  from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Upload, UploadFile } from './upload'
-import Button from '../Button/button'
-import Icon from '../Icon/icon'
 
 const defaultFileList: UploadFile[] = [
   { uid: '123', size: 1234, name: 'hello.md', status: 'uploading', percent: 30 },
@@ -13,28 +11,40 @@ const defaultFileList: UploadFile[] = [
 
 const simpleUpload = () => (
   <Upload
-    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    action="https://jsonplaceholder.typicode.com/posts/"
     onSuccess={action('success')}
     onProgress={action('progress')}
     onError={action('error')}
-    accept=".jpg"
+    onRemove={action('removed')}
     multiple
   >
-    {/* <Button size="lg" btnType="primary"><Icon icon="upload" /> 点击上传 </Button> */}
   </Upload>  
 )
 
-const simpleUpload2 = () => {
+const simpleUploadWithList = () => {
   return (
     <Upload
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      text="拖拽"
       onChange={action('changed')}
       defaultFileList={defaultFileList}
       onRemove={action('removed')}
+      multiple
     />
   )
 }
 
-storiesOf('Upload', module)
-  .add('Upload', simpleUpload)
-  .add('UploadWithlist', simpleUpload2)
+const dragUpload = () => {
+  return (
+    <Upload
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      onChange={action('changed')}
+      drag
+    />
+  )
+}
+
+storiesOf('Upload Component', module)
+  .add('默认 Upload', simpleUpload)
+  .add('上传多个文件 Upload', simpleUploadWithList)
+  .add('支持拖拽 Upload', dragUpload)
