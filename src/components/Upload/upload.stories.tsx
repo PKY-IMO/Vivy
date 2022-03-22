@@ -17,6 +17,8 @@ const simpleUpload = () => (
     onSuccess={action('success')}
     onProgress={action('progress')}
     onError={action('error')}
+    accept=".jpg"
+    multiple
   >
     {/* <Button size="lg" btnType="primary"><Icon icon="upload" /> 点击上传 </Button> */}
   </Upload>  

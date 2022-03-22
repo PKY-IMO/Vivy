@@ -6,13 +6,33 @@ import UploadList from './uploadList'
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
 
 export interface UploadProps {
+  /** 上传地址 */
   action: string;
+  /** 默认文件列表（用于测试） */
   defaultFileList?: UploadFile[];
+  /** 自定义请求头 */
+  headers?: {[key: string]: any};
+  /** 自定义文件名 */
+  name?: string;
+  /** 自定义其他data */
+  data?: {[key: string]: any};
+  /** 自定义携带cookie */
+  withCredentials?: boolean;
+  /** 支持文件类型 */
+  accept?: string;
+  /** 支持多个文件同时上传*/
+  multiple?: boolean;
+  /** 文件校验钩子函数 */
   beforeUpload?: (file: File) => boolean | Promise<File>;
+  /** 文件上传过程钩子函数 */
   onProgress?: (percentage: number, file: UploadFile) => void;
+  /** 上传结果改变钩子函数 */
   onChange?: (file: UploadFile) => void;
+  /** 上传成功钩子函数 */
   onSuccess?: (data: any, file: UploadFile) => void;
+  /** 上传失败钩子函数 */
   onError?: (err: any, file: UploadFile) => void;
+  /** 取消上传钩子函数 */
   onRemove?: (file: UploadFile) => void;
 }
 
@@ -28,7 +48,10 @@ export interface UploadFile {
 }
 
 export const Upload: FC<UploadProps> = (props) => {
+  // 基础属性
   const { action, beforeUpload, onProgress, onChange, onError, onSuccess, defaultFileList, onRemove } = props
+  // http自定义属性,以及input属性
+  const { headers, name, data, withCredentials, accept, multiple } = props
   // 上传文件列表
   const [ fileList, setFileList ] = useState<UploadFile[]>(defaultFileList || [])
   const updateFileList = (updateFile: UploadFile, updateObj: Partial<UploadFile>) => {
@@ -97,11 +120,19 @@ export const Upload: FC<UploadProps> = (props) => {
     setFileList(prev => [_file, ...prev])
     // 传表单数据
     const formData = new FormData()
-    formData.append(file.name, file)
+    // 自定义http
+    formData.append(name || 'file', file)
+    if (data) {
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key])
+      })
+    }
     axios.post(action, formData, {
       headers: {
+        ...headers,
         'Content-Type': 'multipart/form-data'
       },
+      withCredentials,
       onUploadProgress: (e) => {
         let percentage = Math.round((e.loaded * 100) / e.total) || 0;
         if (percentage < 100) {
@@ -160,6 +191,8 @@ export const Upload: FC<UploadProps> = (props) => {
         ref={fileInput}
         onChange={handleFileChange}
         type="file"
+        accept={accept}
+        multiple={multiple}
       />
       <UploadList 
         fileList={fileList}
@@ -167,6 +200,10 @@ export const Upload: FC<UploadProps> = (props) => {
       />
     </div>
   )
+}
+
+Upload.defaultProps = {
+  name: 'file'
 }
 
 export default Upload
