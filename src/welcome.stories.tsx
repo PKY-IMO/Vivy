@@ -9,7 +9,7 @@ storiesOf('Welcome page', module)
         <p>💐vivy 基于React实现的简单组件库💐</p>
         <h3>🎉🎉🎉安装试试</h3>
         <code>
-            npm install vikingship --save
+            npm install vivy --save
         </code>
         <h6>🔗Github: https://github.com/PKY-IMO/Vivy</h6>
       </>

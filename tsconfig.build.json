@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "module": "esnext",
+    "target": "ES5",
+    "declaration": true,
+    "jsx": "react",
+    // 打包寻址方式
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    // webpack 'Tapable' 报错解决方案
+    "skipLibCheck": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+    "src/setupTests.ts",
+  ],
+}

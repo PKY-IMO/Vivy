@@ -1,9 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import Menu, { MenuProps } from './menu'
-import MenuItem from './menuItem'
-import SubMenu from './subMenu'
+import { MenuProps } from './menu'
+import Menu from './index'
 
 const testProps: MenuProps = {
   defaultIndex: '0',
@@ -20,65 +19,65 @@ const testVerProps: MenuProps = {
 
 const defaultMenu = () => (
   <Menu defaultIndex='0' onSelect={action('Select!')} >
-    <MenuItem>
+    <Menu.Item>
       cool link
-    </MenuItem>
-    <MenuItem disabled>
+    </Menu.Item>
+    <Menu.Item disabled>
       disabled
-    </MenuItem> 
-    <MenuItem>
+    </Menu.Item> 
+    <Menu.Item>
       cool link 2
-    </MenuItem> 
+    </Menu.Item> 
   </Menu>
 )
 
 const menuWithSubMenu = () => (
   <Menu {...testProps}>
-    <MenuItem>
+    <Menu.Item>
       menu1
-    </MenuItem>
-    <MenuItem>
+    </Menu.Item>
+    <Menu.Item>
       menu2
-    </MenuItem>
-    <MenuItem>
+    </Menu.Item>
+    <Menu.Item>
       menu3
-    </MenuItem>
-    <SubMenu title="dropdown">
-      <MenuItem>
+    </Menu.Item>
+    <Menu.SubMenu title="dropdown">
+      <Menu.Item>
         submenu1
-      </MenuItem>
-      <MenuItem>
+      </Menu.Item>
+      <Menu.Item>
         submenu2
-      </MenuItem>
-      <MenuItem>
+      </Menu.Item>
+      <Menu.Item>
         submenu3
-      </MenuItem>
-    </SubMenu>
+      </Menu.Item>
+    </Menu.SubMenu>
   </Menu>
 )
 
 const menuWithVerSubMenu = () => (
   <Menu {...testVerProps}>
-    <MenuItem>
+    <Menu.Item>
       menu1
-    </MenuItem>
-    <MenuItem>
+    </Menu.Item>
+    <Menu.Item>
       menu2
-    </MenuItem>
-    <MenuItem>
+    </Menu.Item>
+    <Menu.Item>
       menu3
-    </MenuItem>
-    <SubMenu title="dropdown">
-      <MenuItem>
+    </Menu.Item>
+    <Menu.SubMenu title="dropdown">
+      <Menu.Item>
         submenu1
-      </MenuItem>
-      <MenuItem>
+      </Menu.Item>
+      <Menu.Item>
         submenu2
-      </MenuItem>
-      <MenuItem>
+      </Menu.Item>
+      <Menu.Item>
         submenu3
-      </MenuItem>
-    </SubMenu>
+      </Menu.Item>
+    </Menu.SubMenu>
   </Menu>
 )
 

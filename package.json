@@ -2,6 +2,10 @@
   "name": "vivy",
   "version": "0.1.0",
   "private": true,
+  "main": "build/index.js",
+  "module": "build/index.js",
+  "types": "build/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
@@ -33,11 +37,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rimraf ./build",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./build/index.css"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +73,7 @@
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.4.19",
     "css-loader": "^5.2.7",
+    "rimraf": "^3.0.2",
     "sass": "^1.49.9",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0"

@@ -10,6 +10,8 @@
     padding: $menu-item-padding-y $menu-item-padding-x;
     cursor: pointer;
     transition: $menu-transition;
+    height: inherit;
+    line-height: inherit;
     &:hover, &:focus {
       text-decoration: none;
     }
@@ -61,6 +63,8 @@
       cursor: pointer;
       transition: $menu-transition;
       color: $body-color;
+      height: inherit;
+      line-height: inherit;
       &.is-active, &:hover {
         color: $menu-item-active-color !important;
       }

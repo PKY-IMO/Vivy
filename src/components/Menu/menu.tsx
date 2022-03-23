@@ -1,4 +1,4 @@
-import React, { FC, useState, createContext }  from "react"
+import React, { FC, useState, createContext, FunctionComponentElement }  from "react"
 import classNames from 'classnames'
 import { MenuItemProps } from './menuItem'
 
@@ -53,9 +53,8 @@ export const Menu: FC<MenuProps> = (props) => {
   // 渲染MenuItem,自动添加index
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {
-      const childEle = child as React.FunctionComponentElement<MenuItemProps>
-      const { displayName } = childEle.type
-      if (displayName === 'MenuItem' || displayName === 'SubMenu') {
+      const childEle = child as FunctionComponentElement<MenuItemProps>
+      if (childEle.type.displayName === 'MenuItem' || childEle.type.displayName === 'SubMenu') {
         return React.cloneElement(childEle, {
           index: index.toString()
         })
