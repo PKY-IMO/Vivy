@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
 import axios from 'axios'
-import { render, RenderResult, fireEvent, waitFor, createEvent, screen } from '@testing-library/react'
+import { render, fireEvent, waitFor, createEvent, screen } from '@testing-library/react'
 
 import { Upload, UploadProps } from './upload'
 
@@ -21,11 +21,11 @@ const testProps: UploadProps = {
   drag: true,
   text: 'Click to upload'
 }
-let wrapper: RenderResult, fileInput: HTMLInputElement, uploadArea: HTMLElement
+let fileInput: HTMLInputElement, uploadArea: HTMLElement
 const testFile = new File(['xyz'], 'test.png', {type: 'image/png'})
 describe('test upload component', () => {
   it('upload process should works fine', async () => {
-    wrapper = render(<Upload {...testProps} />)
+    render(<Upload {...testProps} />)
     fileInput = document.querySelector('.vivy-file-input') as HTMLInputElement
     uploadArea = document.querySelector('.vivy-uploader-dragger') as HTMLElement
     // mockedAxios.post.mockImplementation(() => {
@@ -62,7 +62,7 @@ describe('test upload component', () => {
     }))
   })
   it('drag and drop files should works fine', async () => {
-    wrapper = render(<Upload {...testProps} />)
+    render(<Upload {...testProps} />)
     fileInput = document.querySelector('.vivy-file-input') as HTMLInputElement
     uploadArea = document.querySelector('.vivy-uploader-dragger') as HTMLElement
     mockedAxios.post.mockResolvedValue({ data: "cool" });

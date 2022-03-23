@@ -27,7 +27,7 @@ const linkProps: ButtonProps = {
 describe('test Button component', () => {
   it('should render the correct default button', () => {
     // 渲染
-    const view = render(<Button {...defaultProps}>Test</Button>)
+    render(<Button {...defaultProps}>Test</Button>)
     // 获取 指定类型
     const ele = screen.getByText('Test') as HTMLButtonElement
     expect(ele).toBeInTheDocument()
@@ -37,7 +37,7 @@ describe('test Button component', () => {
   })
   it('should render the disabled default button', () => {
     // 渲染
-    const view = render(<Button {...disabledProps}>Test</Button>)
+    render(<Button {...disabledProps}>Test</Button>)
     // 获取 指定类型
     const ele = screen.getByText('Test') as HTMLButtonElement
     expect(ele).toBeInTheDocument()
@@ -47,7 +47,7 @@ describe('test Button component', () => {
   })
   it('should render the testprops button', () => {
     // 渲染
-    const view = render(<Button {...testProps}>Test</Button>)
+    render(<Button {...testProps}>Test</Button>)
     // 获取 指定类型
     const ele = screen.getByText('Test') as HTMLButtonElement
     expect(ele).toBeInTheDocument()
@@ -58,7 +58,7 @@ describe('test Button component', () => {
   })
   it('should render the linktype button', () => {
     // 渲染
-    const view = render(<Button {...linkProps}>Test</Button>)
+    render(<Button {...linkProps}>Test</Button>)
     // 获取 指定类型
     const ele = screen.getByText('Test') as HTMLButtonElement
     expect(ele).toBeInTheDocument()
